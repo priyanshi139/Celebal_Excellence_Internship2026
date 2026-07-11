@@ -1,0 +1,57 @@
+{
+  "document": {
+    "source_file": "Week7_Project.pdf",
+    "raw_chars": 3861,
+    "raw_words": 514
+  },
+  "chunking_profile": {
+    "method": "sentence-aware recursive splitting with character overlap",
+    "chunk_size_chars": 500,
+    "chunk_overlap_chars": 80,
+    "n_chunks": 10,
+    "avg_chunk_len_chars": 455.2,
+    "chunk_size_sweep": [
+      {
+        "chunk_size": 250,
+        "n_chunks": 20,
+        "avg_top1_score": 0.5147233506043752
+      },
+      {
+        "chunk_size": 500,
+        "n_chunks": 10,
+        "avg_top1_score": 0.5106272498766581
+      },
+      {
+        "chunk_size": 800,
+        "n_chunks": 7,
+        "avg_top1_score": 0.4455216924349467
+      }
+    ]
+  },
+  "embedding_model": {
+    "name": "all-MiniLM-L6-v2",
+    "dimension": 384,
+    "mode": "production"
+  },
+  "vector_store": {
+    "engine": "FAISS",
+    "index_type": "IndexFlatIP (cosine similarity via normalized inner product)",
+    "n_vectors": 10,
+    "dimension": 384
+  },
+  "language_model": {
+    "name": "google/flan-t5-base",
+    "mode": "production",
+    "task": "text2text-generation (grounded QA)"
+  },
+  "retrieval_config": {
+    "default_top_k": 3,
+    "hybrid_search": "BM25 + dense fusion via Reciprocal Rank Fusion (RRF)",
+    "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2 (falls back to keyword overlap offline)"
+  },
+  "validation": {
+    "n_sample_queries": 5,
+    "avg_top1_similarity": 0.535,
+    "avg_latency_s": 5.93
+  }
+}

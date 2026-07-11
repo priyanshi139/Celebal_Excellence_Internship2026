@@ -1,0 +1,16 @@
+question,answer,retrieved_chunk_id,similarity_score,latency_s
+What is Retrieval-Augmented Generation?,Retrieval is responsible for finding the most relevant chunks of text from a document. It typically uses embeddings and vector similarity search,2,0.6069,8.8397
+What is Retrieval-Augmented Generation?,Retrieval is responsible for finding the most relevant chunks of text from a document. It typically uses embeddings and vector similarity search,3,0.4667,8.8397
+What is Retrieval-Augmented Generation?,Retrieval is responsible for finding the most relevant chunks of text from a document. It typically uses embeddings and vector similarity search,8,0.4137,8.8397
+What are the stages of the system architecture?,1. Document Ingestion 2. Text Chunking 3. Convert text into smaller chunks 4. Store embeddings in a vector database 5. Accept user query 6. Retrieve relevant chunks 7. Augmentation 8. Generation,4,0.4548,12.1135
+What are the stages of the system architecture?,1. Document Ingestion 2. Text Chunking 3. Convert text into smaller chunks 4. Store embeddings in a vector database 5. Accept user query 6. Retrieve relevant chunks 7. Augmentation 8. Generation,7,0.2375,12.1135
+What are the stages of the system architecture?,1. Document Ingestion 2. Text Chunking 3. Convert text into smaller chunks 4. Store embeddings in a vector database 5. Accept user query 6. Retrieve relevant chunks 7. Augmentation 8. Generation,3,0.2023,12.1135
+What embedding technique is used to convert chunks into vectors?,Embedding model,5,0.6123,2.5211
+What embedding technique is used to convert chunks into vectors?,Embedding model,7,0.5838,2.5211
+What embedding technique is used to convert chunks into vectors?,Embedding model,3,0.3863,2.5211
+How can the retrieval quality be improved?,Use better chunking strategies,2,0.4122,3.8457
+How can the retrieval quality be improved?,Use better chunking strategies,8,0.3593,3.8457
+How can the retrieval quality be improved?,Use better chunking strategies,5,0.326,3.8457
+What is stored in the vector database?,embeddings,5,0.5889,2.3297
+What is stored in the vector database?,embeddings,7,0.5426,2.3297
+What is stored in the vector database?,embeddings,8,0.4167,2.3297

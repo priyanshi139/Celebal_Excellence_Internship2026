@@ -1,6 +1,5 @@
 # Celebal Technologies — Celebal Excellence Data Science Internship 2026
 **Intern:** Priyanshi Mehta
-
 ## Weekly Assignments
 | Week | Topic | Status |
 |------|-------|--------|
@@ -10,10 +9,11 @@
 | [Week 4](week4/CIFAR10_ANN_CNN_Learning_Project.ipynb) | Deep Learning — ANN vs CNN Image Classification on CIFAR-10, Data Augmentation, EarlyStopping |  ✅ Done  |
 | [Week 5](week5/Text_Generation_RNN_LSTM_GRU_Final.ipynb) | Deep Learning — Text Generation using Vanilla RNN, LSTM & GRU, Tokenization, N-gram Sequences, Hyperparameter Tuning | ✅ Done |
 | [Week 6](week6/Week6_Autoencoder_Denoising_MNIST.ipynb) | Deep Learning — Convolutional Autoencoder for Image Denoising on MNIST, Gaussian Noise Injection, PSNR Evaluation | ✅ Done |
-
+| [Week 7](Week7/Week7_RAG_Document_QA.ipynb) | RAG & LLMs — Document Question Answering System using Embeddings, FAISS Vector Store, and Grounded Generation | ✅ Done |
 ## Tools Used
 - Python 3.10
 - NumPy, Pandas, Matplotlib, Seaborn, SciPy, Statsmodels
 - Scikit-learn (LinearRegression, RandomForestRegressor, GridSearchCV, KMeans, DBSCAN, PCA, LabelEncoder, StandardScaler)
 - TensorFlow / Keras (ANN, CNN, RNN, LSTM, GRU, Convolutional Autoencoder, Data Augmentation, EarlyStopping)
+- Sentence-Transformers, FAISS, Hugging Face Transformers
 - Google Colab

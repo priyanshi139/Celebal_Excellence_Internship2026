@@ -1,0 +1,14 @@
+# Copy this file to .env and fill in your keys
+# OpenAI is OPTIONAL. If left blank, the app falls back to a free
+# Hugging Face model (google/flan-t5-base) for answer generation.
+
+OPENAI_API_KEY=
+
+# Embedding model (free, runs locally, no key needed)
+EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
+
+# Vector store backend: "faiss" or "chroma"
+VECTOR_STORE=faiss
+
+# Generation backend: "openai" or "huggingface"
+LLM_BACKEND=huggingface

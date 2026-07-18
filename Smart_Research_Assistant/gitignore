@@ -1,0 +1,10 @@
+.env
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/faiss_index/
+data/chroma_db/
+.streamlit/secrets.toml
+*.egg-info/
+.DS_Store

@@ -79,7 +79,7 @@ cp .env.example .env
 # Leave OPENAI_API_KEY blank to run fully free via Hugging Face,
 # or add a key to enable higher-quality OpenAI generation + RAGAs scoring.
 ```
-
+🔗 **Live Demo of streamplit deployed app check here->:** https://priyanshi-smart-research-assistant.streamlit.app/
 ## Run
 
 **Streamlit app:**

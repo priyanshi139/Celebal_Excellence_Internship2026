@@ -7,7 +7,7 @@
 
 A Retrieval-Augmented Generation (RAG) AI assistant that lets users upload
 documents (PDFs, text files) and ask natural-language questions. The
-assistant retrieves relevant chunks from a vector database and generates
+assistant retrieves relevant chunks from a vector database and generates 
 accurate, context-aware, source-backed answers — with reliability scored
 via evaluation metrics.
 

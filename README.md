@@ -1,5 +1,6 @@
 # Celebal Technologies — Celebal Excellence Data Science Internship 2026
 **Intern:** Priyanshi Mehta
+
 🔗 **Live Demo of project:** https://priyanshi-smart-research-assistant.streamlit.app/
 ## Weekly Assignments
 | Week | Topic | Status |

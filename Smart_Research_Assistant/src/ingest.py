@@ -26,22 +26,60 @@ from langchain_community.document_loaders import (
 from langchain_core.documents import Document
 
 
+def _load_pdf_with_pypdf_directly(path: str) -> List[Document]:
+    """
+    Fallback PDF reader that calls pypdf directly instead of going through
+    LangChain's PyPDFLoader. Used when PyPDFLoader returns empty text for
+    every page (this can happen inconsistently across environments/versions
+    even for PDFs that clearly contain selectable text).
+    """
+    from pypdf import PdfReader
+
+    reader = PdfReader(path)
+    docs = []
+    for i, page in enumerate(reader.pages):
+        text = page.extract_text() or ""
+        docs.append(Document(page_content=text, metadata={"source": path, "page": i}))
+    return docs
+
+
 def load_document(file_path: str) -> List[Document]:
     """
     Load a single document based on its file extension.
     Supports: .pdf, .txt, .md
+
+    For PDFs, tries LangChain's PyPDFLoader first, and falls back to a
+    direct pypdf read if that yields no text at all (seen occasionally
+    across different pypdf/environment versions). Raises a clear error
+    if the PDF still has no extractable text (e.g. it's a scanned image
+    with no OCR layer) instead of silently returning empty chunks.
     """
     path = Path(file_path)
     suffix = path.suffix.lower()
 
     if suffix == ".pdf":
         loader = PyPDFLoader(str(path))
+        docs = loader.load()
+
+        total_text = sum(len(d.page_content.strip()) for d in docs)
+        if total_text == 0:
+            docs = _load_pdf_with_pypdf_directly(str(path))
+            total_text = sum(len(d.page_content.strip()) for d in docs)
+
+        if total_text == 0:
+            raise ValueError(
+                f"No extractable text found in '{path.name}'. This usually means "
+                "the PDF is a scanned image without a text layer. Please upload "
+                "a PDF with selectable/typed text instead."
+            )
+        return docs
+
     elif suffix in (".txt", ".md"):
         loader = TextLoader(str(path), encoding="utf-8")
+        return loader.load()
+
     else:
         raise ValueError(f"Unsupported file type: {suffix}")
-
-    return loader.load()
 
 
 def load_from_url(url: str) -> List[Document]:

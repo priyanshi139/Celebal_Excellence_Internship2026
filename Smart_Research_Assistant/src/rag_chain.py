@@ -53,15 +53,29 @@ def get_llm(backend: Literal["openai", "huggingface"] = "huggingface"):
         return ChatOpenAI(model="gpt-4o-mini", temperature=0, api_key=api_key)
 
     elif backend == "huggingface":
-        from langchain_huggingface import HuggingFacePipeline
-        from transformers import pipeline
+        from langchain_core.language_models.llms import LLM
+        from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
-        pipe = pipeline(
-            "text2text-generation",
-            model="google/flan-t5-base",
-            max_new_tokens=256,
-        )
-        return HuggingFacePipeline(pipeline=pipe)
+        # Bypasses transformers' pipeline() task-registry entirely (different
+        # transformers versions register task names inconsistently, causing
+        # "Unknown task" / ImportError issues). Loading the model + tokenizer
+        # directly and calling .generate() is version-proof.
+        class FlanT5LLM(LLM):
+            model_name: str = "google/flan-t5-base"
+            max_new_tokens: int = 256
+
+            @property
+            def _llm_type(self) -> str:
+                return "flan-t5-local"
+
+            def _call(self, prompt: str, stop=None, run_manager=None, **kwargs) -> str:
+                tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+                model = AutoModelForSeq2SeqLM.from_pretrained(self.model_name)
+                inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=512)
+                outputs = model.generate(**inputs, max_new_tokens=self.max_new_tokens)
+                return tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+        return FlanT5LLM()
 
     raise ValueError(f"Unknown LLM backend: {backend}")
 
